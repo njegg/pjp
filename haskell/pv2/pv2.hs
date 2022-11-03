@@ -1,3 +1,5 @@
+module PV2 where
+   
 {- 1. Napisati funkciju "ispeglaj" koja prima listu ciji su elementi
    liste [[Int]], a vraca listu brojeva [Int] tako sto sve elemente
    podlisti spoji u jednu listu.
