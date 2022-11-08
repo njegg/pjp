@@ -23,9 +23,10 @@ fac 1 = 1
 fac n = n * fac (n - 1)
 
 -- b) repno rekurzivno
+fac2 :: Int -> Int
 fac2 n = facTail n 1 
 
-fac :: Int Int -> Int
+facTail :: Int -> Int -> Int
 facTail 1 a = a
 facTail n a = facTail (n - 1) (a * n)
 
