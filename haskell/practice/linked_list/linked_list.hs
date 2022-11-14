@@ -2,7 +2,7 @@ data LinkedList = Null | Node Int LinkedList
 
 -- show implementation --
 instance Show LinkedList where
-    -- show :: LinkedList -> String
+    show :: LinkedList -> String
         -- nice print --
     show xs = "[" ++ printList xs ++ "]"
         where

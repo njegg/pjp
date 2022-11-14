@@ -8,6 +8,13 @@ rmNthHelper (x:xs) n i
   | n == i + 1 = rmNthHelper(xs) n (i + 1)
   | otherwise = x : rmNthHelper(xs) n (i + 1)
 
+rmNth' :: [Int] -> Int -> [Int]
+rmNth' l n = f l n 0
+  where
+    f [] _ _ = []
+    f (x:xs) n i
+      | n == i + 1 = f(xs) n (i + 1)
+      | otherwise = x : f(xs) n (i + 1)
 
 -- 2. Napisati funkciju koja vraca listu delilaca nekog pozitivnog broja. --
 delioci :: Int -> [Int] 

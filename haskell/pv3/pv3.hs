@@ -10,12 +10,16 @@ data Element a = Prazan | Cvor a (Element a) deriving Show
    tipa podataka.  -}
 
 kreirajMojuListu :: [Int] -> Element Int
-kreirajMojuListu [] = Prazan
-kreirajMojuListu (x:xs) = Cvor x (kreirajMojuListu xs) 
+kreirajMojuListu = foldl (flip Cvor) Prazan
+
+-- kreirajMojuListu [] = Prazan
+-- kreirajMojuListu (x:xs) = Cvor x (kreirajMojuListu xs) 
+-- kreirajMojuListu = foldr Cvor Prazan
 
 kreirajMojuListuPlaneta :: [Planeta] -> Element Planeta
-kreirajMojuListuPlaneta [] = Prazan
-kreirajMojuListuPlaneta (x:xs) = Cvor x (kreirajMojuListuPlaneta xs) 
+-- kreirajMojuListuPlaneta [] = Prazan
+-- kreirajMojuListuPlaneta (x:xs) = Cvor x (kreirajMojuListuPlaneta xs) 
+kreirajMojuListuPlaneta = foldr Cvor Prazan
 
 {- 3. Napisati funkciju "duzinaListe" koja prima gore kreiranu listu
    i vrati njenu duzinu.  -}
@@ -51,6 +55,7 @@ data Planeta = Nista | Planeta {
 
 type Planete = Element Planeta
 
+p :: Planete
 p = kreirajMojuListuPlaneta [Planeta "P1" 2.4 False, Planeta "Trazena" 4.4 True, Planeta "Epik planeta" 43.33 True]
 
 {- 7. Napisati funkciju "nadjiPoImenu" koja prima String i Planete i 

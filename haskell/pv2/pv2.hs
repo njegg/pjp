@@ -9,6 +9,8 @@ module PV2 where
 ispeglaj :: [[Int]] -> [Int]
 ispeglaj [] = []
 ispeglaj (x:xs) = x ++ ispeglaj xs
+-- ispeglaj l = foldr (++) [] l
+-- ispeglaj l = concat l
 
 
 {- 2. Napisati funkciju koja prima listu listi brojeva [[Int]], i vraca
@@ -18,7 +20,8 @@ ispeglaj (x:xs) = x ++ ispeglaj xs
 
 sumpeglaj :: [[Int]] -> [Int]
 sumpeglaj [] = []
-sumpeglaj (x:xs) = [sum x] ++ sumpeglaj xs
+sumpeglaj l = foldr (\ x a -> sum x : a) [] l
+-- sumpeglaj l = map sum l
 
 {- 3. Napisati funkciju koja prima listu ciji su elementi liste brojeva,
    te iz svake podliste izbacuje parne brojeve. Ako slucajno ostane
@@ -28,16 +31,13 @@ sumpeglaj (x:xs) = [sum x] ++ sumpeglaj xs
    [[1, 2, 3], [2, 4], [3, 4, 5], [7]] -> [[1, 3], [3, 5], [7]] -}
 
 deleven :: [[Int]] -> [[Int]]
-deleven x = rmEmpty $ delevenHelper x
+deleven l = filter (/= []) $ map (filter odd) l
 
-delevenHelper :: [[Int]] -> [[Int]]
-delevenHelper [] = []
-delevenHelper (x:xs) = filter odd x : deleven xs
+-- deleven x = filter (/= []) $ delevenHelper x
 
-rmEmpty :: [[Int]] -> [[Int]]
-rmEmpty [] = []
-rmEmpty [[]] = []
-rmEmpty x = filter (/= []) x
+-- delevenHelper :: [[Int]] -> [[Int]]
+-- delevenHelper [] = []
+-- delevenHelper (x:xs) = filter odd x : deleven xs
 
 
 {- 4. Napisati funkciju "okreni" koja prolazi kroz listu stringova, 

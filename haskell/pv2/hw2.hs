@@ -10,8 +10,13 @@ import Data.Char
 --}
 
 z1 :: [Int] -> [Int]
-z1 x | odd $ length x = map (\x -> x * 10) x
-     | otherwise      = map (\x -> x * x) x
+z1 x
+    | odd $ length x = map (* 10) x
+    | otherwise      = map (^ 2) x
+
+-- z1 x
+--     | odd $ length x = map (\ x -> x * 10) x
+--     | otherwise      = map (\ x -> x * x) x
 
 
 {--
@@ -57,4 +62,5 @@ izbaciParnePaSumiraj = primeni deleven sumpeglaj
    Dovoljno je vratiti celobrojnu vrednost (npr. 5 umesto 5.3)
 --}
 prosecnaDuzina :: [[Char]] -> Int
-prosecnaDuzina x = div (foldl (+) 0 $ map length x) (length x)
+prosecnaDuzina x = div (sum $ map length x) (length x)
+-- prosecnaDuzina x = div (foldl (+) 0 $ map length x) (length x)
