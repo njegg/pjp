@@ -13,9 +13,11 @@ tree = Node 1 (Node 42 (Node 44 Empty Empty) (Node 99 Empty Empty)) (Node 10 Emp
 
 contains :: Int -> Tree -> Bool
 contains t Empty = False
-contains t (Node x l r)
-    | x == t = True
-    | otherwise = contains t l || contains t r
+contains t (Node x l r) = x == t || contains t l || contains t r
+
+-- contains t (Node x l r)
+--     | x == t = True
+--     | otherwise = contains t l || contains t r
 
 
 {- 3. Napisati funkciju uListu koja sve brojeve u stablu smesta u listu. -}
@@ -49,9 +51,6 @@ mirror :: Tree -> Tree
 mirror Empty = Empty
 mirror (Node x l r) = Node x (mirror r) (mirror l)
 
-mirrorTest :: Bool
-mirrorTest = reverse (treeToListIn tree) == treeToListIn (mirror tree)
-
 
 {- 6. Napisati funkciju filterStablo. Ona kao parametre ocekuje funkciju f
    koja prima Int i vraca Bool, i Stablo. Rezultat funkcije filterStablo
@@ -61,5 +60,12 @@ filterTree :: (Int -> Bool) -> Tree -> [Int]
 filterTree f Empty = []
 filterTree f (Node x l r) = [x | f x] ++ filterTree f l ++ filterTree f r
 
+
+-- Tests
+
 filterTreeTest :: Bool
 filterTreeTest = filter odd (treeToListPre tree) == filterTree odd tree
+
+mirrorTest :: Bool
+mirrorTest = reverse (treeToListIn tree) == treeToListIn (mirror tree)
+
