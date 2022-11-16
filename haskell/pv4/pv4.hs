@@ -3,6 +3,10 @@
 
    primer: "ana voli milovana" -> "ana", "voli", "milovana" -}
 
+bsplit :: Char -> String -> [String]
+bsplit del = foldr (\x (a:as) -> if x /= del then (x : a) : as else [] : a : as) [""]
+
+
 -- delimiter, token acc, input , list acc 
 split :: Char -> String -> [String]
 split d s = splitHelper d [] s []
@@ -14,10 +18,6 @@ splitHelper d token (x:xs) acc
     | otherwise = splitHelper d [] xs (acc ++ [token])
 
 
-bsplit :: Char -> String -> [String]
-bsplit _ [] = []
-
-
 {- 2. Napisati funkciju koja prihvata listu Stringova.
    Sve stringove spoji tako sto izmedju svaka 2 
    umetne karakter ','.
@@ -25,7 +25,6 @@ bsplit _ [] = []
    ["ana", "voli", "milovana"] + ',' -> "ana,voli,milovana" -}
 
 spoji :: [String] -> String
-spoji [] = []
 spoji [x] = x
 spoji (x:xs) = x ++ "," ++ spoji xs
 
